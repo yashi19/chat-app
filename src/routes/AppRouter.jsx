@@ -1,19 +1,15 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import Login from "../components/Login/Login";
-import App from "../components/App/App";
-import {history} from "./history";
+import {BrowserRouter as Router, Switch} from "react-router-dom";
+import routes from "./routes";
+import RouteWithSubRoute from "./RouteWithSubRoute";
 
 const AppRouter = () => {
     return (
-        <Router history={history}>
+        <Router>
             <Switch>
-                <Route path={"/"} exact={true}>
-                    <Login />
-                </Route>
-                <Route path={"/app"} exact={true}>
-                    <App />
-                </Route>
+                {
+                    routes.map((route, i) => (<RouteWithSubRoute key={i} {...route} />))
+                }
             </Switch>
         </Router>
     )
